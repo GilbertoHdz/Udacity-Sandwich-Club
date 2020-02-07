@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -64,6 +65,21 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateUI(Sandwich sandwich) {
+        TextView alsoKnownTextView = (TextView) findViewById(R.id.also_known_tv);
+        TextView originTextView = (TextView) findViewById(R.id.origin_tv);
+        TextView ingredientsTextView = (TextView) findViewById(R.id.ingredients_tv);
+        TextView descriptionTextView = (TextView) findViewById(R.id.description_tv);
 
+        for (String alsoKnown : sandwich.getAlsoKnownAs()) {
+            alsoKnownTextView.append((alsoKnown) + "\n\n");
+        }
+
+        originTextView.setText(sandwich.getPlaceOfOrigin());
+
+        for (String ingredient : sandwich.getIngredients()) {
+            ingredientsTextView.append(" - " + (ingredient) + "\n\n");
+        }
+
+        descriptionTextView.setText(sandwich.getDescription());
     }
 }
